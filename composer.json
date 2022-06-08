@@ -1,0 +1,17 @@
+{
+    "name": "radoncode/slim3",
+    "autoload": {
+        "psr-4": {
+            "Radoncode\\Slim3\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Radoncode",
+            "email": "contact@radoncode.fr"
+        }
+    ],
+    "require": {
+        "slim/slim": "^3.5"
+    }
+}
