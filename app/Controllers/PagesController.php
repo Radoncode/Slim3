@@ -16,6 +16,11 @@ class PagesController {
 
     public function home(RequestInterface $request, ResponseInterface $response)
     {
-        $this->container->view->render($response, 'pages/home.twig', ['name' => 'Marc']);
+        $this->container->view->render($response, 'pages/home.twig');
+    }
+
+    public function getContact(RequestInterface $request, ResponseInterface $response)
+    {
+        $this->container->view->render($response, 'pages/contact.twig');
     }
 }

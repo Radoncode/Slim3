@@ -13,5 +13,6 @@ $app = new \Slim\App([
 require '../app/container.php';
 
 $app->get('/', PagesController::class . ':home');
+$app->get('/nous-contacter', PagesController::class . ':getContact')->setName('contact');
 
 $app->run();
