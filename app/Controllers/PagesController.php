@@ -5,22 +5,15 @@ namespace App\Controllers;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
-class PagesController {
-
-    private $container;
-
-    public function __construct($container)
-    {
-        $this->container = $container;
-    }
+class PagesController extends Controller {
 
     public function home(RequestInterface $request, ResponseInterface $response)
     {
-        $this->container->view->render($response, 'pages/home.twig');
+        $this->render($response, 'pages/home.twig');
     }
 
     public function getContact(RequestInterface $request, ResponseInterface $response)
     {
-        $this->container->view->render($response, 'pages/contact.twig');
+        $this->render($response, 'pages/contact.twig');
     }
 }
