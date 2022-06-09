@@ -29,6 +29,23 @@ class Database {
     }
 }
 
+class PagesController {
+
+    private $container;
+
+    public function __construct($container) {
+        $this->container = $container;
+    }
+
+    public function salut(\Slim\Http\Request $request, \Slim\Http\Response $response, $args){
+        $posts = $this->container->db->query('SELECT * FROM posts');
+        dump($posts);
+        return $response->write('hello ' . $args['nom']);
+    }
+}
+
+
+
 $app = new \Slim\App();
 $container = $app->getContainer();
 
@@ -44,11 +61,7 @@ $container['db'] = function ($container) {
 
 $app->add(new DemoMiddleware());
 
-$app->get('/salut/{nom}', function (\Slim\Http\Request $request, \Slim\Http\Response $response, $args){
-    $posts = $this->db->query('SELECT * FROM posts');
-    dump($posts);
-    return $response->write('hello ' . $args['nom']);
-});
+$app->get('/salut/{nom}', 'PagesController:salut');
 
 $app->run();
 
