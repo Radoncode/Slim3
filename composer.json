@@ -2,7 +2,7 @@
     "name": "radoncode/slim3",
     "autoload": {
         "psr-4": {
-            "Radoncode\\Slim3\\": "src/"
+            "App\\": "app/"
         }
     },
     "authors": [
@@ -12,7 +12,8 @@
         }
     ],
     "require": {
-        "slim/slim": "^3.5"
+        "slim/slim": "^3.5",
+        "slim/twig-view": "2.1"
     },
     "require-dev": {
         "symfony/var-dumper": "^3.1"
