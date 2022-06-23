@@ -14,5 +14,6 @@ require '../app/container.php';
 
 $app->get('/', PagesController::class . ':home');
 $app->get('/nous-contacter', PagesController::class . ':getContact')->setName('contact');
+$app->post('/nous-contacter', PagesController::class . ':postContact');
 
 $app->run();

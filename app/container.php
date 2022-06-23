@@ -1,6 +1,8 @@
 <?php
 
 use Slim\Views\Twig;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mailer\Transport;
 
 $container = $app->getContainer();
 
@@ -16,4 +18,11 @@ $container['view'] = function ($container) {
     $view->addExtension(new \Slim\Views\TwigExtension($container['router'], $basePath));
 
     return $view;
+};
+
+$container['mailer'] = function ($container) {
+    $transport = Transport::fromDsn('smtp://localhost:1025');
+    $mailer = new Mailer($transport);
+    
+    return $mailer;
 };
