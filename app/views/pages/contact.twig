@@ -7,6 +7,16 @@
         Dolor porro nisi eum earum doloremque cumque maiores consequatur amet
          accusamus cupiditate! Atque dolorem, libero nisi molestias placeat 
          accusamus necessitatibus nam autem.</p>
+    {% if flash.success %}
+        <div class="alert alert-success">
+            {{ flash.success }}
+        </div>
+    {% endif %}
+    {% if flash.error %}
+        <div class="alert alert-danger">
+            {{ flash.error }}
+        </div>
+    {% endif %}
 
     <form action="{{ path_for('contact')}}" method="post">
         <div class="form-group">
