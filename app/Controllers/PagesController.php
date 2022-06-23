@@ -5,6 +5,7 @@ namespace App\Controllers;
 use Symfony\Component\Mime\Email;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Respect\Validation\Validator;
 
 class PagesController extends Controller {
 
@@ -21,17 +22,22 @@ class PagesController extends Controller {
 
     public function postContact(RequestInterface $request, ResponseInterface $response)
     {   
-        if (false) {
-            $this->flash('Votre message a bien été envoyé');
-        } else {
-            $this->flash("Certains champs n'ont pas été remplis correctement", 'error');
-        }
-        
-       /* $email = (new Email())
+        $errors = [];
+        Validator::email()->validate($request->getParam('email')) || $errors['email'] = "Votre email n'est pas valide";
+        Validator::notEmpty()->validate($request->getParam('name')) || $errors['name'] = "Veuillez entrer votre nom";
+        Validator::notEmpty()->validate($request->getParam('content')) || $errors['content'] = "Veuillez entrer votre contenu";
+        if (empty($errors)) {
+            $email = (new Email())
                 ->from(($request->getParam('email')))
                 ->to('contact@radoncode.fr')
                 ->text('Un email vous a été envoyé : '.$request->getParam('content'));
-       $this->mailer->send($email);*/
+            $this->mailer->send($email);
+            $this->flash('Votre message a bien été envoyé');
+        } else {
+            $this->flash("Certains champs n'ont pas été remplis correctement", 'error');
+            $this->flash($errors, 'errors');
+        }
+        
        return $this->redirect($response,'contact');
     }    
 }
