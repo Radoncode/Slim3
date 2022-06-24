@@ -10,6 +10,10 @@ $container['debug'] = function () {
     return true;
 };
 
+$container['csrf'] = function () {
+    return new \Slim\Csrf\Guard();
+};
+
 $container['view'] = function ($container) {
     $dir = dirname(__DIR__);
 

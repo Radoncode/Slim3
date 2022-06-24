@@ -26,7 +26,7 @@ class OldMiddleware {
         }
 
         $response = $next($request, $response);
-        if ($response->getStatusCode() !== 200){
+        if ($response->getStatusCode() === 400){
             $_SESSION['old'] = $request->getParams();
         }
 

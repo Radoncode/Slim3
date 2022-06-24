@@ -33,11 +33,13 @@ class PagesController extends Controller {
                 ->text('Un email vous a été envoyé : '.$request->getParam('content'));
             $this->mailer->send($email);
             $this->flash('Votre message a bien été envoyé');
+            return $this->redirect($response,'contact');
         } else {
             $this->flash("Certains champs n'ont pas été remplis correctement", 'error');
             $this->flash($errors, 'errors');
+            return $this->redirect($response,'contact', 400);
         }
         
-       return $this->redirect($response,'contact');
+       
     }    
 }
